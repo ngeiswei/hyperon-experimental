@@ -8,6 +8,7 @@ pip install -e ./python[dev]
 
 # Build Hyperon library
 cd ./lib
+cargo clean
 cargo build
 cargo test
 cargo doc --no-deps
