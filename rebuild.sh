@@ -16,7 +16,7 @@ cd ..
 
 # Build C and Python API
 trash build; mkdir build; cd build
-cmake ..
-make
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j4
 make check
 cd ..
