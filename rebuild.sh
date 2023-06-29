@@ -5,7 +5,6 @@ cargo install --force cbindgen
 pip install conan==1.60.1
 conan profile new --detect default
 pip install pip==23.1.2
-pip install -e ./python[dev]
 
 # Build Hyperon library
 cd ./lib
@@ -20,4 +19,12 @@ trash build; mkdir build; cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j4
 make check
+cd ..
+
+# Install python library and executables
+pip install -e ./python[dev]
+
+# Test
+cd python
+pytest ./tests
 cd ..
