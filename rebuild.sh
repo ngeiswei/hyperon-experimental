@@ -2,8 +2,9 @@
 rustup update stable
 pip install -U pip
 cargo install --force cbindgen
-pip install conan==1.57
+pip install conan==1.60.1
 conan profile new --detect default
+pip install pip==23.1.2
 pip install -e ./python[dev]
 
 # Build Hyperon library
