@@ -2,7 +2,7 @@
 rustup update stable
 pip install -U pip
 cargo install --force cbindgen
-pip install conan==1.60.1
+pip install conan==1.60.2
 conan profile new --detect default
 pip install pip==23.1.2
 
