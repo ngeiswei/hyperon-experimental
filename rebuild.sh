@@ -1,3 +1,21 @@
+# You may need to create a Python environment first (this only needs
+# to be done once)
+#
+# python -m venv hyperon-env
+#
+# Then source the environment before calling that script
+#
+# source hyperon-env/bin/activate
+#
+# Tip: create symbolic links pointing to the hyperon environment to be
+# easier to be sourced from various places
+#
+# ln -s /path/to/venv/bin/activate activate
+#
+# That way you only need to call
+#
+# Source activate
+
 # Prepare environment
 rustup update stable
 pip install -U pip
