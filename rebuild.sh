@@ -14,7 +14,7 @@
 #
 # That way you only need to call
 #
-# Source activate
+# source activate
 
 # Prepare environment
 rustup update stable
@@ -35,7 +35,7 @@ cd ..
 # Build C and Python API
 trash build; mkdir build; cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make -j4
+make -j16
 make check
 cd ..
 
