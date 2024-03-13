@@ -66,6 +66,8 @@ def text_ops(run_context):
     parse: convert String to Atom.
     stringToChars: convert String to tuple of Char.
     charsToString: convert tuple of Char to String.
+    concat-str : concatenate two strings.
+    len-str: return the length of a string.
 
     see test_stdlib.py for examples.
 
@@ -78,11 +80,17 @@ def text_ops(run_context):
                                       ['String', 'Atom'], unwrap=False)
     charsToStringAtom = OperationAtom('charsToString', lambda a: [ValueAtom("".join([str(c)[1:-1] for c in a.get_children()]))],
                                       ['Atom', 'String'], unwrap=False)
+    concatStrAtom = OperationAtom('concat-str', lambda ls, rs: [ValueAtom(str(ls)[1:-1] + str(rs)[1:-1])],
+                                  ['String', 'String', 'String'], unwrap=False)
+    lenStrAtom = OperationAtom('len-str', lambda s: [ValueAtom(len(str(s)[1:-1]))],
+                               ['String', 'Number'], unwrap=False)
     return {
         r"repr": reprAtom,
         r"parse": parseAtom,
         r"stringToChars": stringToCharsAtom,
-        r"charsToString": charsToStringAtom
+        r"charsToString": charsToStringAtom,
+        r"concat-str": concatStrAtom,
+        r"len-str": lenStrAtom
     }
 
 @register_tokens
