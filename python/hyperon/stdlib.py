@@ -68,6 +68,8 @@ def text_ops(run_context):
     charsToString: convert tuple of Char to String.
     concat-str : concatenate two strings.
     len-str: return the length of a string.
+    join-str: join a tuple of strings.
+    split-str: split a string into a tuple of strings.
 
     see test_stdlib.py for examples.
 
@@ -84,13 +86,20 @@ def text_ops(run_context):
                                   ['String', 'String', 'String'], unwrap=False)
     lenStrAtom = OperationAtom('len-str', lambda s: [ValueAtom(len(str(s)[1:-1]))],
                                ['String', 'Number'], unwrap=False)
+    joinStrAtom = OperationAtom('join-str', lambda c, ts: [ValueAtom(str(c)[1:-1].join([str(s)[1:-1] for s in ts.get_children()]))],
+                                ['String', 'Expression', 'String'], unwrap=False)
+    splitStrAtom = OperationAtom('split-str', lambda s, c: [E(*[ValueAtom(ss) for ss in str(s)[1:-1].split(str(c)[1:-1])])],
+                                 ['String', 'String', 'Expression'], unwrap=False)
+
     return {
         r"repr": reprAtom,
         r"parse": parseAtom,
         r"stringToChars": stringToCharsAtom,
         r"charsToString": charsToStringAtom,
         r"concat-str": concatStrAtom,
-        r"len-str": lenStrAtom
+        r"len-str": lenStrAtom,
+        r"join-str": joinStrAtom,
+        r"split-str": splitStrAtom
     }
 
 @register_tokens
