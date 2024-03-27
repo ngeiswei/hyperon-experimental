@@ -70,6 +70,7 @@ def text_ops(run_context):
     len-str: return the length of a string.
     join-str: join a tuple of strings.
     split-str: split a string into a tuple of strings.
+    arity: return arity of an expression.
 
     see test_stdlib.py for examples.
 
@@ -90,6 +91,8 @@ def text_ops(run_context):
                                 ['String', 'Expression', 'String'], unwrap=False)
     splitStrAtom = OperationAtom('split-str', lambda s, c: [E(*[ValueAtom(ss) for ss in str(s)[1:-1].split(str(c)[1:-1])])],
                                  ['String', 'String', 'Expression'], unwrap=False)
+    arityAtom = OperationAtom('arity', lambda e: [ValueAtom(len(e.get_children()))],
+                              ['Expression', 'Number'], unwrap=False)
 
     return {
         r"repr": reprAtom,
@@ -99,7 +102,8 @@ def text_ops(run_context):
         r"concat-str": concatStrAtom,
         r"len-str": lenStrAtom,
         r"join-str": joinStrAtom,
-        r"split-str": splitStrAtom
+        r"split-str": splitStrAtom,
+        r"arity": arityAtom
     }
 
 @register_tokens
