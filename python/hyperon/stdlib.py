@@ -62,11 +62,11 @@ def parseImpl(atom, run_context):
 def text_ops(run_context):
     """Add text operators
 
-    repr: convert Atom to string.
+    repr: convert Atom to String.
     parse: convert String to Atom.
     stringToChars: convert String to tuple of Char.
     charsToString: convert tuple of Char to String.
-    concat-str : concatenate two strings.
+    String.append : concatenate two strings.
     len-str: return the length of a string.
     join-str: join a tuple of strings.
     split-str: split a string into a tuple of strings.
@@ -83,7 +83,7 @@ def text_ops(run_context):
                                       ['String', 'Atom'], unwrap=False)
     charsToStringAtom = OperationAtom('charsToString', lambda a: [ValueAtom("".join([str(c)[1:-1] for c in a.get_children()]))],
                                       ['Atom', 'String'], unwrap=False)
-    concatStrAtom = OperationAtom('concat-str', lambda ls, rs: [ValueAtom(str(ls)[1:-1] + str(rs)[1:-1])],
+    StringAppendAtom = OperationAtom('String.append', lambda ls, rs: [ValueAtom(str(ls)[1:-1] + str(rs)[1:-1])],
                                   ['String', 'String', 'String'], unwrap=False)
     lenStrAtom = OperationAtom('len-str', lambda s: [ValueAtom(len(str(s)[1:-1]))],
                                ['String', 'Number'], unwrap=False)
@@ -99,7 +99,7 @@ def text_ops(run_context):
         r"parse": parseAtom,
         r"stringToChars": stringToCharsAtom,
         r"charsToString": charsToStringAtom,
-        r"concat-str": concatStrAtom,
+        r"String.append": StringAppendAtom,
         r"len-str": lenStrAtom,
         r"join-str": joinStrAtom,
         r"split-str": splitStrAtom,
