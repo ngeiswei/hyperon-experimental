@@ -18,11 +18,10 @@
 
 # Prepare environment
 rustup update stable
-pip install -U pip
 cargo install --force cbindgen
-pip install conan==2.13.0
+python3 -m pip install pip==23.1.2
+python3 -m pip install conan==2.13.0
 conan profile detect --force
-pip install pip==23.1.2
 
 # Build Hyperon library
 cd ./lib
@@ -40,7 +39,7 @@ make check
 cd ..
 
 # Install python library and executables
-pip install -e ./python[dev]
+python3 -m pip install -e ./python[dev]
 
 # Test
 cd python
